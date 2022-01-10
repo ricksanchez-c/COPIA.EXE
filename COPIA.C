@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-
-
 void printbin(int number){
     int i;
     for(i = 128; i > 0; i >>= 1){
@@ -13,8 +11,6 @@ void printbin(int number){
         }
     }
 }
-
-
 
 int main(){
         int contador;
@@ -63,8 +59,6 @@ int main(){
         }
         
         printf("CON %d Bytes\n", pesolectura);
-
-
         
         bytes = 1;
         bytesmaximo = (1024*2);
@@ -84,26 +78,14 @@ int main(){
         } 
         printf("CON %d Bytes\n\n", pesoescritura);
         
-        //FILE *file;       
-        
         file = fopen("COPIADEBYTES.JPG","ab+");
-        
         for(contador = 0; contador < (pesolectura / sizeof(unsigned char)); contador++){
-
                 /*Indice de Bytes, Hexadecimal, Binario*/
                 printf("Byte[%d] = 0X%02x ", contador, (int)((unsigned char)puntero[contador])); 
                 printbin((int)((unsigned char)puntero[contador]));
                 //printf(" %d",(int)puntero[contador]); //ASCII
                 printf("\n");
-                
-                //FILE *file = fopen("copia por bytes.jpg","ab+"); 
-                /*if(file == NULL){ 
-                        printf("\ncopia de byteas a 'copia por bytes.jpg' interrumpida\n");
-                        return -1; 
-                }*/ 
                 fwrite(&puntero[contador], 1, 1, file);
-                //fclose(file); 
-                
         }
         fclose(file);
         printf("\nESCRITURA DE 'COPIADEBYTES.JPG' CON %d Bytes\n\n",pesoescritura);
