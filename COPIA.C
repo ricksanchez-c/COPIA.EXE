@@ -1,9 +1,9 @@
 #include <stdio.h>
 
-void printbin(int number){
-    int i;
-    for(i = 128; i > 0; i >>= 1){
-        if((number & i) == i){
+void printbin(int numero){
+    int bit;
+    for(bit = 128; bit > 0; bit >>= 1){
+        if((numero & bit) == bit){
                 printf("1");    
         }
         else{
@@ -26,7 +26,7 @@ int main(){
     FILE * archivoescritura;
     char * nombrearchivoescritura;
 
-    FILE *archivodebtes;
+    FILE *archivodebytes;
     
     bytes = 1;
     bytesmaximo = (1024*2);
@@ -78,16 +78,16 @@ int main(){
     } 
     printf("CON %d Bytes\n\n", pesoescritura);
     
-    archivodebtes = fopen("COPIADEBYTES.JPG","ab+");
+    archivodebytes = fopen("COPIADEBYTES.JPG","ab+");
     for(contador = 0; contador < (pesolectura / sizeof(unsigned char)); contador++){
             /*Indice de Bytes, Hexadecimal, Binario*/
             printf("Byte[%d] = 0X%02x ", contador, (int)((unsigned char)puntero[contador])); 
             printbin((int)((unsigned char)puntero[contador]));
             //printf(" %d",(int)puntero[contador]); //ASCII
             printf("\n");
-            fwrite(&puntero[contador], 1, 1, archivodebtes);
+            fwrite(&puntero[contador], 1, 1, archivodebytes);
     }
-    fclose(archivodebtes);
+    fclose(archivodebytes);
     printf("\nESCRITURA DE 'COPIADEBYTES.JPG' CON %d Bytes\n\n",pesoescritura);
 
     fclose (archivolectura);        
